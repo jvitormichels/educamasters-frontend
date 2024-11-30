@@ -1,15 +1,6 @@
 **Descrição**
 Descrever o problema.
 
-**Solução**
-Descrever a solução do problema.
-
-**Migrations**
-* `título da migration`
-
-**Runners**
-Comandos para rodar e instruções
-
 **Tipo de mudança**
 
 - [ ] Bug fix
