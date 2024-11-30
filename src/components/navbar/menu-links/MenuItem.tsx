@@ -3,12 +3,13 @@ import { Link } from "react-router-dom"
 
 interface MenuItemProps {
   children: React.ReactNode;
-  to: string
+  to: string;
+  toggle: () => void;
 }
 
-const MenuItem: React.FC<MenuItemProps> = ({ children, to }) => {
+const MenuItem: React.FC<MenuItemProps> = ({ children, to, toggle }) => {
   return (
-    <Link to={to}>
+    <Link to={to} onClick={toggle}>
       <Text display="block">
         {children}
       </Text>
