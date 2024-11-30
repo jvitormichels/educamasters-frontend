@@ -1,10 +1,11 @@
-import logo from './assets/logo.svg';
-import './App.css';
+import logo from '../../assets/logo.svg';
+import './styles.css';
 
-import { Provider } from './components/ui/provider';
-import Navbar from './components/navbar/NavBar';
+import { Provider } from '../../components/ui/provider';
+import Navbar from '../../components/navbar/NavBar';
+import { useEffect } from 'react';
 
-function App() {
+function Home() {
   return (
     <Provider>
       <div className="App">
@@ -20,7 +21,7 @@ function App() {
             target="_blank"
             rel="noopener noreferrer"
           >
-            Learn React
+            aaaaaaaaaaaaaaa
           </a>
         </header>
       </div>
@@ -28,4 +29,4 @@ function App() {
   )
 }
 
-export default App;
+export default Home;
