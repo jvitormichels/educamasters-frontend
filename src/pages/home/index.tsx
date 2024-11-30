@@ -1,16 +1,10 @@
 import logo from '../../assets/logo.svg';
 import './styles.css';
 
-import { Provider } from '../../components/ui/provider';
-import Navbar from '../../components/navbar/NavBar';
-import { useEffect } from 'react';
-
 function Home() {
   return (
-    <Provider>
-      <div className="App">
-        <Navbar/>
-        <header className="App-header">
+    <>
+      <header className="App-header">
           <img src={logo} className="App-logo" alt="logo" />
           <p>
             Edit <code>src/App.tsx</code> and save to reload.
@@ -24,9 +18,8 @@ function Home() {
             aaaaaaaaaaaaaaa
           </a>
         </header>
-      </div>
-    </Provider>
-  )
+    </>
+  );
 }
 
 export default Home;

@@ -16,7 +16,7 @@ const MenuLinks: React.FC<MenuLinksProps> = ({ isOpen }) => {
         pt={[4, 4, 0, 0]}
       >
         <MenuItem to="/">Cursos</MenuItem>
-        <MenuItem to="/trails">Trilhas</MenuItem>
+        <MenuItem to="/about">Sobre</MenuItem>
         <MenuItem to="/contact">Contato</MenuItem>
       </Stack>
     </Box>
