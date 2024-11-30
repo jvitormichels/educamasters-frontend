@@ -5,7 +5,7 @@ import Logo from "./Logo";
 import MenuToggle from "./MenuToggle";
 import MenuLinks from "./menu-links/";
 
-const Navbar = () => {
+const NavBar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const toggle = () => setIsOpen(!isOpen);
 
@@ -13,9 +13,9 @@ const Navbar = () => {
     <NavBarContainer>
       <Logo w="100px" color={["white", "white", "primary.500", "primary.500"]} />
       <MenuToggle toggle={toggle} isOpen={isOpen} />
-      <MenuLinks isOpen={isOpen} />
+      <MenuLinks toggle={toggle} isOpen={isOpen} />
     </NavBarContainer>
   )
 }
 
-export default Navbar
+export default NavBar

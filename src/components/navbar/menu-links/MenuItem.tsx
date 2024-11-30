@@ -1,13 +1,15 @@
-import { Link, Text } from "@chakra-ui/react"
+import { Text } from "@chakra-ui/react"
+import { Link } from "react-router-dom"
 
 interface MenuItemProps {
   children: React.ReactNode;
-  to: string
+  to: string;
+  toggle: () => void;
 }
 
-const MenuItem: React.FC<MenuItemProps> = ({ children, to }) => {
+const MenuItem: React.FC<MenuItemProps> = ({ children, to, toggle }) => {
   return (
-    <Link href={to}>
+    <Link to={to} onClick={toggle}>
       <Text display="block">
         {children}
       </Text>
