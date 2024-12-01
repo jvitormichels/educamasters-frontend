@@ -1,4 +1,4 @@
-import { SimpleGrid, Stack } from '@chakra-ui/react';
+import { SimpleGrid } from '@chakra-ui/react';
 import { Course } from '../../types/course';
 import CourseCard from './CourseCard';
 
