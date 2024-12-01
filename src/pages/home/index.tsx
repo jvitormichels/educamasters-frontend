@@ -19,7 +19,7 @@ function Home() {
 
   const [searchQuery, setSearchQuery] = useState("");
   const [currentPage, setCurrentPage] = useState(1);
-  const pageSize = 10;
+  const pageSize = 8;
 
   useEffect(() => {
     fetchCourses(searchQuery, currentPage, pageSize).then((data) => {
