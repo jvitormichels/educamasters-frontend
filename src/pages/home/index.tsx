@@ -31,7 +31,7 @@ function Home() {
       <header className="App-header">
         <h1>Courses</h1>
         <CourseList courses={courses} />
-        <Box mt={4}>
+        <Box mt={4} px={[2, 4, 6]}>
           <Pagination meta={metadata} pageSize={pageSize} setCurrentPage={setCurrentPage}/>
         </Box>
       </header>

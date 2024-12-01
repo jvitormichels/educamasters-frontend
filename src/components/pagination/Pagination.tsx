@@ -21,14 +21,15 @@ const Pagination: React.FC<PaginationProps> = ({ meta, pageSize, setCurrentPage 
   console.log(meta)
   return (
     <PaginationRoot
-      size="xs"
+      size={["sm", "md", "xs"]}
       variant="solid"
       count={meta.total_count}
       pageSize={pageSize}
       defaultPage={1}
       onPageChange={handlePageChange}
+      siblingCount={0}
     >
-      <HStack>
+      <HStack gap={[2, 4, 6]} wrap="wrap" justify="center">
         <PaginationPrevTrigger />
         <PaginationItems />
         <PaginationNextTrigger />
