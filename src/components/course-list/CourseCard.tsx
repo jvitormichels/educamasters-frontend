@@ -5,7 +5,7 @@ import { Image } from "@chakra-ui/react"
 
 const CourseCard = (course: Course) => {
   return (
-    <Card.Root maxW="sm" overflow="hidden" height={360}>
+    <Card.Root maxW="sm" overflow="hidden">
       <Image
         src="https://stellantis3.dam-broadcast.com/medias/domain12808/media107154/2146345-gschtp5of0-whr.jpg"
         alt={ course.name }
