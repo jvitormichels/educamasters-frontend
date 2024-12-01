@@ -1,23 +1,24 @@
-import logo from '../../assets/logo.svg';
+import { useEffect, useState } from 'react';
 import './styles.css';
+import { fetchCourses } from '../../services/courseService';
+import { Course } from '@/types/course';
+import CourseList from '../../components/course-list';
 
 function Home() {
+  const [courses, setCourses] = useState<Course[]>([]);
+
+  useEffect(() => {
+    fetchCourses().then((data) => {
+      setCourses(data.courses);
+    });
+  }, []);
+
   return (
     <>
       <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.tsx</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            aaaaaaaaaaaaaaa
-          </a>
-        </header>
+        <h1>Courses</h1>
+        <CourseList courses={courses} />
+      </header>
     </>
   );
 }
