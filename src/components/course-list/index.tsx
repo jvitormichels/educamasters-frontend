@@ -12,7 +12,7 @@ function CourseList({ courses }: CourseListProps) {
       gap={8}
       columns={[1, 1, 2, 4]}
       pt={[4, 4, 0, 0]}
-      px={[4, 8, 0]}
+      px={[4, 8, 8]}
     >
       {courses.map((course) => (
         <CourseCard key={course.id} {...course} />
