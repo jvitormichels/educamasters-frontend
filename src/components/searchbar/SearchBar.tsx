@@ -1,6 +1,7 @@
 import { Input } from "@chakra-ui/react"
 import { InputGroup } from "../ui/input-group"
 import { LuSearch } from "react-icons/lu";
+import { useDebounce } from 'use-debounce';
 import { useEffect, useState } from "react";
 
 interface SearchBarProps {
@@ -9,9 +10,16 @@ interface SearchBarProps {
 }
 
 const SearchBar: React.FC<SearchBarProps> = ({ searchQuery, setSearchQuery }) => {
+  const [auxSearchQuery, setAuxSearchQuery] = useState("");
+  const [debouncedQuery] = useDebounce(auxSearchQuery, 400);
+
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setSearchQuery(e.target.value);
+    setAuxSearchQuery(e.target.value);
   };
+
+  useEffect(() => {
+    setSearchQuery(debouncedQuery);
+  }, [debouncedQuery]);
   
   return (
     <InputGroup
@@ -20,7 +28,7 @@ const SearchBar: React.FC<SearchBarProps> = ({ searchQuery, setSearchQuery }) =>
     >
       <Input
         placeholder="Pesquisar cursos"
-        value={searchQuery} 
+        value={auxSearchQuery} 
         onChange={handleChange}/>
     </InputGroup>
   )
