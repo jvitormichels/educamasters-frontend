@@ -4,10 +4,12 @@ import { Course } from "@/types/course"
 import { Image } from "@chakra-ui/react"
 
 const CourseCard = (course: Course) => {
+  const placeholderImage = "https://via.placeholder.com/750x422?text=No+Image"
+
   return (
     <Card.Root maxW="sm" overflow="hidden">
       <Image
-        src="https://stellantis3.dam-broadcast.com/medias/domain12808/media107154/2146345-gschtp5of0-whr.jpg"
+        src={ course.thumbnail || placeholderImage }
         alt={ course.name }
       />
       <Card.Body gap="2">
