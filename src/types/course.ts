@@ -11,6 +11,7 @@ export interface Course {
   name: string;
   description: string;
   end_date: string;
+  thumbnail: string;
 }
 
 export interface CourseResponse {
