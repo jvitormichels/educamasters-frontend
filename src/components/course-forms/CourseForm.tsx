@@ -1,7 +1,8 @@
 import { Button, Fieldset, FileUpload, Input, Stack } from "@chakra-ui/react"
 import { Field } from "../ui/field"
 import { CourseCreate } from "@/types/course";
-// import FileUploadButton from "../file-upload-button/FileUploadButton";
+import FileUploadButton from "../file-upload-button/FileUploadButton";
+import React from "react";
 
 interface CourseFormProps {
   formData: CourseCreate;
@@ -15,6 +16,17 @@ const CourseForm = ({ formData, setFormData, handleSubmit }: CourseFormProps) =>
     setFormData((prev: any) => ({
       ...prev,
       [name]: value,
+    }));
+  }
+
+  const handleThumbnailChange = (e: React.FormEvent<HTMLInputElement>) => {
+    const target = e.target as HTMLInputElement & {
+      files: FileList;
+    }
+    console.log("target", target.files)
+    setFormData((prevFormData: CourseCreate) => ({
+      ...prevFormData,
+      thumbnail: target.files[0]
     }));
   }
 
@@ -41,9 +53,9 @@ const CourseForm = ({ formData, setFormData, handleSubmit }: CourseFormProps) =>
             <Input name="end_date" type="date" value={ formData.end_date } onChange={handleChange} />
           </Field>
 
-          {/* <Field label="Thumbnail">
-            <FileUploadButton setFormData={setFormData} text="Thumbnail"/>
-          </Field> */}
+          <Field label="Thumbnail">
+            <FileUploadButton handleThumbnailChange={handleThumbnailChange} />
+          </Field>
         </Fieldset.Content>
 
         <Button type="submit" alignSelf="flex-start">

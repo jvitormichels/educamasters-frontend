@@ -23,5 +23,5 @@ export interface CourseCreate {
   name: string;
   description: string;
   end_date: string;
-  // thumbnail: File | null;
+  thumbnail: File | null;
 }

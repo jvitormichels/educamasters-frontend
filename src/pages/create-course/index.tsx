@@ -8,7 +8,7 @@ function CreateCoursePage() {
     name: "",
     description: "",
     end_date: "",
-    // thumbnail: null
+    thumbnail: null
   });
 
   const handleSubmit = (e: React.FormEvent) => {
