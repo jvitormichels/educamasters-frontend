@@ -1,12 +1,26 @@
+import { Button } from "../ui/button"
+import {
+  FileUploadList,
+  FileUploadRoot,
+  FileUploadTrigger,
+} from "../ui/file-upload"
+import { HiUpload } from "react-icons/hi"
+
 interface FileUploadButtonProps {
+  text: string;
   handleThumbnailChange: (data: any) => void;
 }
 
-const FileUploadButton = ({ handleThumbnailChange }: FileUploadButtonProps) => {
+const FileUploadButton = ({ text = "Arquivo", handleThumbnailChange }: FileUploadButtonProps) => {
   return (
-    <>
-      <input type="file" name="thumbnail" onChange={handleThumbnailChange} />
-    </>
+    <FileUploadRoot onChange={handleThumbnailChange}>
+      <FileUploadTrigger asChild>
+        <Button variant="outline" size="sm">
+          <HiUpload />{ text }
+        </Button>
+      </FileUploadTrigger>
+      <FileUploadList />
+    </FileUploadRoot>
   )
 }
 
