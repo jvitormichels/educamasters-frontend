@@ -23,7 +23,7 @@ const SearchBar: React.FC<SearchBarProps> = ({ searchQuery, setSearchQuery }) =>
   
   return (
     <InputGroup
-      flex="1"
+      padding={5}
       startElement={<LuSearch />}
     >
       <Input

@@ -21,6 +21,7 @@ const Pagination: React.FC<PaginationProps> = ({ meta, pageSize, setCurrentPage 
   console.log(meta)
   return (
     <PaginationRoot
+      mb={10}
       size={["sm", "md", "xs"]}
       variant="solid"
       count={meta.total_count}
