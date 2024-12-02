@@ -54,7 +54,7 @@ const CourseForm = ({ formData, setFormData, handleSubmit }: CourseFormProps) =>
           </Field>
 
           <Field label="Thumbnail">
-            <FileUploadButton handleThumbnailChange={handleThumbnailChange} />
+            <FileUploadButton text="Imagem" handleThumbnailChange={handleThumbnailChange} />
           </Field>
         </Fieldset.Content>
 
