@@ -1,10 +1,8 @@
-import { Box } from "@chakra-ui/react";
-import CourseCreate from "../../components/course-forms/CourseCreate";
-import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { Box, Stack } from "@chakra-ui/react";
 import { ExistentCourse } from "@/types/course";
-import { fetchCourse, updateCourse } from "../../services/courseService";
+import { updateCourse } from "../../services/courseService";
 import CourseForm from "./CourseForm";
+import { toaster } from "../ui/toaster";
 
 interface EditCoursePageProps {
   courseData: ExistentCourse;
@@ -14,15 +12,26 @@ interface EditCoursePageProps {
 
 const EditCoursePage: React.FC<EditCoursePageProps> = ({ courseData, setCourseData, courseId }) => {
   const handleSubmit = (e: React.FormEvent) => {
-    updateCourse(Number(courseId), courseData).then((data) => {
-      // mostra um toast bonitinho
+    updateCourse(Number(courseId), courseData).then(() => {
+      toaster.create({
+        title: "Curso atualizado com sucesso!",
+        type: "success",
+      })
     })
     e.preventDefault();
   }
   
   return (
     <Box className="App-header" padding={20}>
-      <CourseForm courseData={courseData} setCourseData={setCourseData}  handleSubmit={handleSubmit} variant="edit" />
+      {/* <Stack
+        gap={8}
+        align="center"
+        justify={["center", "space-between", "flex-end", "flex-end"]}
+        direction={["column", "row", "row", "row"]}
+        pt={[4, 4, 0, 0]}
+      > */}
+        <CourseForm courseData={courseData} setCourseData={setCourseData}  handleSubmit={handleSubmit} variant="edit" />
+      {/* </Stack> */}
     </Box>
   );
 }

@@ -3,6 +3,7 @@ import CourseForm from "./CourseForm";
 import { createCourse } from "../../services/courseService";
 import { useNavigate } from 'react-router-dom';
 import { useState } from "react";
+import { toaster } from "../ui/toaster";
 
 const CourseCreate = () => {
   const navigate = useNavigate();
@@ -16,6 +17,10 @@ const CourseCreate = () => {
 
   const handleSubmit = (e: React.FormEvent) => {
     createCourse(courseData).then((data) => {
+      toaster.create({
+        title: "Curso criado com sucesso!",
+        type: "success"
+      })
       navigate(`/administration/courses/${data.id}`);
     })
     e.preventDefault();
