@@ -30,16 +30,21 @@ const CourseCard: React.FC<CourseCardProps> = ({ course, variant, getCourses }) 
       <Card.Body gap="2">
         <Card.Title lineClamp={2}>{ course.name }</Card.Title>
       </Card.Body>
-      { variant === "admin" && (
-        <Card.Footer justifyContent="center">
-          <Link to={`/administration/courses/${ course.id }`}>
-            <Button variant="outline">Editar</Button>
-          </Link>
-          <form onSubmit={handleDelete}>
-            <Button type="submit" variant="solid" colorPalette={"red"}>Deletar</Button>
-          </form>
-        </Card.Footer>
-      )}
+      <Card.Footer justifyContent="center">
+        { variant === "admin" && (
+          <>
+            <Link to={`/administration/courses/${ course.id }`}>
+              <Button variant="outline">Editar</Button>
+            </Link>
+            <form onSubmit={handleDelete}>
+              <Button type="submit" variant="solid" colorPalette={"red"}>Deletar</Button>
+            </form>
+          </>
+        )}
+        <Link to={`/courses/${ course.id }`}>
+          <Button variant="outline">Assistir</Button>
+        </Link>
+      </Card.Footer>
     </Card.Root>
   )
 }

@@ -36,7 +36,7 @@ const EditCoursePage: React.FC<EditCoursePageProps> = ({ courseData, setCourseDa
         <CourseForm courseData={courseData} setCourseData={setCourseData}  handleSubmit={handleSubmit} variant="edit" />
         <VStack gap={5}>
           <CreateCourseDialog courseId={courseId} />
-          <CoursePagesContainer coursePages={ courseData.pages }/>
+          <CoursePagesContainer coursePages={ courseData.pages } variant="admin"/>
         </VStack>
       </Stack>
     </Box>
