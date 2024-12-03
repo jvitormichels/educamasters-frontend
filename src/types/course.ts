@@ -18,3 +18,10 @@ export interface CourseResponse {
   meta: Meta;
   courses: Course[];
 }
+
+export interface CourseCreate {
+  name: string;
+  description: string;
+  end_date: string;
+  thumbnail: File | null;
+}

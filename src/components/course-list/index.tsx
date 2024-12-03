@@ -4,9 +4,10 @@ import CourseCard from './CourseCard';
 
 interface CourseListProps {
   courses: Course[];
+  variant?: "admin" | "default";
 }
 
-function CourseList({ courses }: CourseListProps) {
+function CourseList({ courses, variant = 'default' }: CourseListProps) {
   return (
     <SimpleGrid
       gap={8}
@@ -15,7 +16,7 @@ function CourseList({ courses }: CourseListProps) {
       px={[4, 8, 8]}
     >
       {courses.map((course) => (
-        <CourseCard key={course.id} {...course} />
+        <CourseCard variant={variant} key={course.id} course={course} />
       ))}
     </SimpleGrid>
   )
