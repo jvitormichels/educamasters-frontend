@@ -15,7 +15,7 @@ const FileUploadButton = ({ text = "Arquivo", handleThumbnailChange }: FileUploa
   return (
     <FileUploadRoot onChange={handleThumbnailChange}>
       <FileUploadTrigger asChild>
-        <Button variant="outline" size="sm">
+        <Button variant="solid" size="sm">
           <HiUpload />{ text }
         </Button>
       </FileUploadTrigger>

@@ -1,4 +1,4 @@
-import { Button, Fieldset, FileUpload, Input, Stack } from "@chakra-ui/react"
+import { Button, Fieldset, Input, Stack, VStack } from "@chakra-ui/react"
 import { Field } from "../ui/field"
 import { CourseCreate } from "@/types/course";
 import FileUploadButton from "../file-upload-button/FileUploadButton";
@@ -32,7 +32,7 @@ const CourseForm = ({ formData, setFormData, handleSubmit }: CourseFormProps) =>
 
   return (
     <form onSubmit={handleSubmit}>
-      <Fieldset.Root size="lg" maxW="md">
+      <Fieldset.Root>
         <Stack>
           <Fieldset.Legend>Criar novo curso</Fieldset.Legend>
           <Fieldset.HelperText>
@@ -40,27 +40,32 @@ const CourseForm = ({ formData, setFormData, handleSubmit }: CourseFormProps) =>
           </Fieldset.HelperText>
         </Stack>
 
-        <Fieldset.Content>
-          <Field label="Nome do curso">
-            <Input name="name" value={ formData.name } onChange={handleChange} />
-          </Field>
+        <VStack
+          gap={10}
+          align="center"
+        >
+          <Fieldset.Content>
+            <Field label="Nome do curso">
+              <Input variant={"subtle"} name="name" value={ formData.name } onChange={handleChange} />
+            </Field>
 
-          <Field label="Descrição">
-            <Input name="description" type="textarea" value={ formData.description } onChange={handleChange} />
-          </Field>
+            <Field label="Descrição">
+              <Input variant={"subtle"} name="description" type="textarea" value={ formData.description } onChange={handleChange} />
+            </Field>
 
-          <Field label="Data de vencimento">
-            <Input name="end_date" type="date" value={ formData.end_date } onChange={handleChange} />
-          </Field>
+            <Field label="Data de vencimento">
+              <Input variant={"subtle"} name="end_date" type="date" value={ formData.end_date } onChange={handleChange} />
+            </Field>
 
-          <Field label="Thumbnail">
-            <FileUploadButton text="Imagem" handleThumbnailChange={handleThumbnailChange} />
-          </Field>
-        </Fieldset.Content>
+            <Field label="Thumbnail">
+              <FileUploadButton text="Imagem" handleThumbnailChange={handleThumbnailChange} />
+            </Field>
+          </Fieldset.Content>
 
-        <Button type="submit" alignSelf="flex-start">
-          Submit
-        </Button>
+          <Button type="submit" alignSelf="flex-start">
+            Criar
+          </Button>
+        </VStack>
       </Fieldset.Root>
     </form>
   )
