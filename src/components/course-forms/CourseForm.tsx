@@ -1,19 +1,21 @@
-import { Button, Fieldset, Input, Stack, VStack } from "@chakra-ui/react"
+import { Box, Button, Fieldset, Input, Stack, VStack } from "@chakra-ui/react"
 import { Field } from "../ui/field"
-import { CourseCreate } from "@/types/course";
+import { ExistentCourse, BaseCourse } from "@/types/course";
 import FileUploadButton from "../file-upload-button/FileUploadButton";
 import React from "react";
+import { Textarea } from "@chakra-ui/react"
 
 interface CourseFormProps {
-  formData: CourseCreate;
-  setFormData: (data: any) => void;
+  courseData: BaseCourse | ExistentCourse;
+  setCourseData: (data: any) => void;
   handleSubmit: (e: React.FormEvent) => void;
+  variant: "create" | "edit";
 }
 
-const CourseForm = ({ formData, setFormData, handleSubmit }: CourseFormProps) => {
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+const CourseForm = ({ courseData, setCourseData, handleSubmit, variant }: CourseFormProps) => {
+  const handleChange = <T extends React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>>(e: T) => {
     const { name, value } = e.target;
-    setFormData((prev: any) => ({
+    setCourseData((prev: any) => ({
       ...prev,
       [name]: value,
     }));
@@ -23,8 +25,8 @@ const CourseForm = ({ formData, setFormData, handleSubmit }: CourseFormProps) =>
     const target = e.target as HTMLInputElement & {
       files: FileList;
     }
-    console.log("target", target.files)
-    setFormData((prevFormData: CourseCreate) => ({
+    
+    setCourseData((prevFormData: BaseCourse) => ({
       ...prevFormData,
       thumbnail: target.files[0]
     }));
@@ -34,36 +36,54 @@ const CourseForm = ({ formData, setFormData, handleSubmit }: CourseFormProps) =>
     <form onSubmit={handleSubmit}>
       <Fieldset.Root>
         <Stack>
-          <Fieldset.Legend>Criar novo curso</Fieldset.Legend>
-          <Fieldset.HelperText>
-            Insira abaixo os detalhes gerais
-          </Fieldset.HelperText>
+          <Fieldset.Legend>
+            {variant === "create" ? "Criar novo curso" : "Detalhes do curso"}
+          </Fieldset.Legend>
         </Stack>
 
-        <VStack
-          gap={10}
-          align="center"
-        >
+        <VStack gap={8}>
           <Fieldset.Content>
-            <Field label="Nome do curso">
-              <Input variant={"subtle"} name="name" value={ formData.name } onChange={handleChange} />
-            </Field>
+            <Stack
+              gap={[4, 4, 8, 8]}
+              align="center"
+              justify={["center", "space-between", "flex-end", "flex-end"]}
+              direction={["column", "row", "row", "row"]}
+              pt={[4, 4, 0, 0]}
+            >
+              <Box>
+                <Stack gap={2}>
+                  <Field label="Nome do curso">
+                    <Input required variant={"subtle"} name="name" value={ courseData.name } onChange={handleChange} />
+                  </Field>
 
-            <Field label="Descrição">
-              <Input variant={"subtle"} name="description" type="textarea" value={ formData.description } onChange={handleChange} />
-            </Field>
+                  <Field label="Data de vencimento">
+                    <Input required variant={"subtle"} name="end_date" type="date" value={ courseData.end_date } onChange={handleChange} />
+                  </Field>
 
-            <Field label="Data de vencimento">
-              <Input variant={"subtle"} name="end_date" type="date" value={ formData.end_date } onChange={handleChange} />
-            </Field>
+                  { variant === "create" && (
+                    <Field label="Thumbnail">
+                      <FileUploadButton text="Imagem" handleThumbnailChange={handleThumbnailChange} />
+                    </Field>
+                  )}
+                </Stack>
+              </Box>
 
-            <Field label="Thumbnail">
-              <FileUploadButton text="Imagem" handleThumbnailChange={handleThumbnailChange} />
-            </Field>
+              <Box>
+                <Field label="Descrição">
+                  <Textarea
+                    onChange={handleChange}
+                    value={ courseData.description }
+                    name="description"
+                    variant={"subtle"}
+                    minH={"13em"}
+                  />
+                </Field>
+              </Box>
+            </Stack>
           </Fieldset.Content>
 
           <Button type="submit" alignSelf="flex-start">
-            Criar
+            {variant === "create" ? "Criar curso" : "Salvar alterações"}
           </Button>
         </VStack>
       </Fieldset.Root>

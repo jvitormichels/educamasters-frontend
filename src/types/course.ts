@@ -6,22 +6,30 @@ export interface Meta {
   prev_page: number | null;
 }
 
-export interface Course {
+export interface BaseCourse {
+  name: string;
+  description: string;
+  end_date: string;
+  thumbnail: string | File | null;
+}
+
+export interface ExistentCourse extends BaseCourse {
   id: number;
-  name: string;
-  description: string;
-  end_date: string;
-  thumbnail: string;
+  pages: ExistentCoursePage[];
 }
 
-export interface CourseResponse {
+export interface BaseCoursePage {
+  course_id: number;
+  title: string;
+  video: File | string | null;
+}
+
+export interface ExistentCoursePage extends BaseCoursePage {
+  id: number;
+  position: number;
+}
+
+export interface CourseList {
   meta: Meta;
-  courses: Course[];
-}
-
-export interface CourseCreate {
-  name: string;
-  description: string;
-  end_date: string;
-  thumbnail: File | null;
+  courses: ExistentCourse[];
 }

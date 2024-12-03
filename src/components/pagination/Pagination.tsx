@@ -18,7 +18,6 @@ const Pagination: React.FC<PaginationProps> = ({ meta, pageSize, setCurrentPage 
     setCurrentPage(details.page);
   };
 
-  console.log(meta)
   return (
     <PaginationRoot
       mb={10}
