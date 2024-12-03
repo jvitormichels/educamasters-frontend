@@ -56,7 +56,7 @@ const CourseForm = ({ courseData, setCourseData, handleSubmit, variant }: Course
         >
           <Fieldset.Content>
             <Field label="Nome do curso">
-              <Input variant={"subtle"} name="name" value={ courseData.name } onChange={handleChange} />
+              <Input required variant={"subtle"} name="name" value={ courseData.name } onChange={handleChange} />
             </Field>
 
             <Field label="Descrição">
@@ -74,7 +74,7 @@ const CourseForm = ({ courseData, setCourseData, handleSubmit, variant }: Course
             </Field>
 
             <Field label="Data de vencimento">
-              <Input variant={"subtle"} name="end_date" type="date" value={ courseData.end_date } onChange={handleChange} />
+              <Input required variant={"subtle"} name="end_date" type="date" value={ courseData.end_date } onChange={handleChange} />
             </Field>
 
             <Field label="Thumbnail">
