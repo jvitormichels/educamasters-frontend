@@ -1,13 +1,14 @@
 import { SimpleGrid } from '@chakra-ui/react';
-import { Course } from '../../types/course';
+import { ExistentCourse } from '../../types/course';
 import CourseCard from './CourseCard';
 
 interface CourseListProps {
-  courses: Course[];
+  courses: ExistentCourse[];
   variant?: "admin" | "default";
+  getCourses?: () => void;
 }
 
-function CourseList({ courses, variant = 'default' }: CourseListProps) {
+function CourseList({ courses, variant = 'default', getCourses }: CourseListProps) {
   return (
     <SimpleGrid
       gap={8}
@@ -16,7 +17,7 @@ function CourseList({ courses, variant = 'default' }: CourseListProps) {
       px={[4, 8, 8]}
     >
       {courses.map((course) => (
-        <CourseCard variant={variant} key={course.id} course={course} />
+        <CourseCard getCourses={getCourses} variant={variant} key={course.id} course={course} />
       ))}
     </SimpleGrid>
   )

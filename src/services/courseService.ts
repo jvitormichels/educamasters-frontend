@@ -23,3 +23,9 @@ export const updateCourse = async (id: number, courseData: ExistentCourse): Prom
   const response = await apiClient.patch<ExistentCourse>(`/courses/${id}`, params);
   return response.data;
 };
+
+export const deleteCourse = async (id: number): Promise<void> => {
+  console.log(id)
+  const response = await apiClient.delete(`/courses/${id}`);
+  return response.data;
+}
