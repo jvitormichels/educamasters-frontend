@@ -1,12 +1,11 @@
 import { Box, Image, Text } from "@chakra-ui/react"
-
-import logo from "../../assets/logo.svg"
+import logo from "../../assets/logo.png"
 
 export default function Logo(props: any) {
   return (
-    <Box {...props}>
-      <Text fontSize="lg" fontWeight="bold">
-        <Image src={logo} alt="logo"/>
+    <Box width="fit-content" {...props}>
+      <Text fontWeight="bold">
+        <Image height="1em" src={logo} alt="logo"/>
       </Text>
     </Box>
   )
