@@ -23,7 +23,7 @@ const CourseForm = ({ formData, setFormData, handleSubmit }: CourseFormProps) =>
     const target = e.target as HTMLInputElement & {
       files: FileList;
     }
-    console.log("target", target.files)
+    
     setFormData((prevFormData: CourseCreate) => ({
       ...prevFormData,
       thumbnail: target.files[0]
