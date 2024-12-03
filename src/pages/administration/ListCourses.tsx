@@ -22,7 +22,7 @@ function ListCourses() {
   const pageSize = 8;
 
   function getCourses(): void {
-    fetchCourses(searchQuery, currentPage, pageSize).then((data) => {
+    fetchCourses(searchQuery, currentPage, pageSize, true).then((data) => {
       setCourses(data.courses);
       setMetadata(data.meta);
     });
