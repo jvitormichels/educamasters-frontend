@@ -23,7 +23,7 @@ const CourseCard: React.FC<CourseCardProps> = ({ course, variant }) => {
       </Card.Body>
       { variant === "admin" && (
         <Card.Footer justifyContent="center">
-          <Link to="/">
+          <Link to={`/administration/courses/${ course.id }`}>
             <Button variant="outline">Editar</Button>
           </Link>
         </Card.Footer>
