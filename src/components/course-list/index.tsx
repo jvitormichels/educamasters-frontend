@@ -16,9 +16,13 @@ function CourseList({ courses, variant = 'default', getCourses }: CourseListProp
       pt={[4, 4, 0, 0]}
       px={[4, 8, 8]}
     >
-      {courses.map((course) => (
-        <CourseCard getCourses={getCourses} variant={variant} key={course.id} course={course} />
-      ))}
+      {courses.length ? (
+        courses.map((course) => (
+          <CourseCard getCourses={getCourses} variant={variant} key={course.id} course={course} />
+        ))
+      ) : (
+        <p>Nenhum resultado</p>
+      )}
     </SimpleGrid>
   )
 }
