@@ -1,12 +1,9 @@
-import { Button, Fieldset, Input, Stack, VStack } from "@chakra-ui/react"
+import { Box, Button, Fieldset, Input, Stack, VStack } from "@chakra-ui/react"
 import { Field } from "../ui/field"
 import { ExistentCourse, BaseCourse } from "@/types/course";
 import FileUploadButton from "../file-upload-button/FileUploadButton";
 import React from "react";
-import { chakra, useRecipe } from "@chakra-ui/react"
-import AutoResize from "react-textarea-autosize"
-
-const StyledAutoResize = chakra(AutoResize)
+import { Textarea } from "@chakra-ui/react"
 
 interface CourseFormProps {
   courseData: BaseCourse | ExistentCourse;
@@ -16,9 +13,6 @@ interface CourseFormProps {
 }
 
 const CourseForm = ({ courseData, setCourseData, handleSubmit, variant }: CourseFormProps) => {
-  const recipe = useRecipe({ key: "textarea" })
-  const styles = recipe({ size: "sm" })
-
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
     setCourseData((prev: any) => ({
@@ -43,43 +37,45 @@ const CourseForm = ({ courseData, setCourseData, handleSubmit, variant }: Course
       <Fieldset.Root>
         <Stack>
           <Fieldset.Legend>
-            {variant === "create" ? "Criar novo curso" : "Editar curso"}
+            {variant === "create" ? "Criar novo curso" : "Detalhes do curso"}
           </Fieldset.Legend>
-          <Fieldset.HelperText>
-            Insira abaixo os detalhes gerais
-          </Fieldset.HelperText>
         </Stack>
 
-        <VStack
-          gap={10}
-          align="center"
-        >
+        <VStack gap={8}>
           <Fieldset.Content>
-            <Field label="Nome do curso">
-              <Input required variant={"subtle"} name="name" value={ courseData.name } onChange={handleChange} />
-            </Field>
+            <Stack
+              gap={[4, 4, 8, 8]}
+              align="center"
+              justify={["center", "space-between", "flex-end", "flex-end"]}
+              direction={["column", "row", "row", "row"]}
+              pt={[4, 4, 0, 0]}
+            >
+              <Box>
+                <Stack gap={2}>
+                  <Field label="Nome do curso">
+                    <Input required variant={"subtle"} name="name" value={ courseData.name } onChange={handleChange} />
+                  </Field>
 
-            <Field label="Descrição">
-              <StyledAutoResize
-                name="description"
-                value={ courseData.description }
-                onChange={(e) => {handleChange(e as any)}}
-                minH="initial"
-                resize="none"
-                overflow="hidden"
-                lineHeight="inherit"
-                css={styles}
-                backgroundColor={"#18181a"}
-              />
-            </Field>
+                  <Field label="Data de vencimento">
+                    <Input required variant={"subtle"} name="end_date" type="date" value={ courseData.end_date } onChange={handleChange} />
+                  </Field>
 
-            <Field label="Data de vencimento">
-              <Input required variant={"subtle"} name="end_date" type="date" value={ courseData.end_date } onChange={handleChange} />
-            </Field>
+                  <Field label="Thumbnail">
+                    <FileUploadButton text="Imagem" handleThumbnailChange={handleThumbnailChange} />
+                  </Field>
+                </Stack>
+              </Box>
 
-            <Field label="Thumbnail">
-              <FileUploadButton text="Imagem" handleThumbnailChange={handleThumbnailChange} />
-            </Field>
+              <Box>
+                <Field label="Descrição">
+                  <Textarea
+                    variant={"subtle"}
+                    minH={"13em"}
+                    placeholder="XSmall size"
+                  />
+                </Field>
+              </Box>
+            </Stack>
           </Fieldset.Content>
 
           <Button type="submit" alignSelf="flex-start">
