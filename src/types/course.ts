@@ -6,7 +6,7 @@ export interface Meta {
   prev_page: number | null;
 }
 
-export interface Course {
+export interface ExistentCourse {
   id: number;
   name: string;
   description: string;
@@ -14,12 +14,12 @@ export interface Course {
   thumbnail: string;
 }
 
-export interface CourseResponse {
+export interface CourseList {
   meta: Meta;
-  courses: Course[];
+  courses: ExistentCourse[];
 }
 
-export interface CourseCreate {
+export interface NewCourse {
   name: string;
   description: string;
   end_date: string;

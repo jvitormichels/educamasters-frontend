@@ -1,6 +1,6 @@
 import CourseForm from "../../components/course-forms/CourseForm";
 import { useState } from "react";
-import { CourseCreate } from "@/types/course";
+import { NewCourse } from "@/types/course";
 import { createCourse } from "../../services/courseService";
 import { Box } from "@chakra-ui/react";
 import { useNavigate } from 'react-router-dom';
@@ -8,7 +8,7 @@ import { useNavigate } from 'react-router-dom';
 function CreateCoursePage() {
   const navigate = useNavigate();
 
-  const [formData, setFormData] = useState<CourseCreate>({
+  const [formData, setFormData] = useState<NewCourse>({
     name: "",
     description: "",
     end_date: "",
@@ -17,7 +17,7 @@ function CreateCoursePage() {
 
   const handleSubmit = (e: React.FormEvent) => {
     createCourse(formData).then((data) => {
-      navigate(`/courses/${data.id}`);
+      navigate(`/administration/courses/${data.id}`);
     })
     e.preventDefault();
   }

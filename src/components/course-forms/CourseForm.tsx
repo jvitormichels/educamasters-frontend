@@ -1,11 +1,11 @@
 import { Button, Fieldset, Input, Stack, VStack } from "@chakra-ui/react"
 import { Field } from "../ui/field"
-import { CourseCreate } from "@/types/course";
+import { NewCourse } from "@/types/course";
 import FileUploadButton from "../file-upload-button/FileUploadButton";
 import React from "react";
 
 interface CourseFormProps {
-  formData: CourseCreate;
+  formData: NewCourse;
   setFormData: (data: any) => void;
   handleSubmit: (e: React.FormEvent) => void;
 }
@@ -24,7 +24,7 @@ const CourseForm = ({ formData, setFormData, handleSubmit }: CourseFormProps) =>
       files: FileList;
     }
     
-    setFormData((prevFormData: CourseCreate) => ({
+    setFormData((prevFormData: NewCourse) => ({
       ...prevFormData,
       thumbnail: target.files[0]
     }));
