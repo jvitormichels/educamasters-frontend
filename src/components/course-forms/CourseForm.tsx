@@ -1,19 +1,20 @@
 import { Button, Fieldset, Input, Stack, VStack } from "@chakra-ui/react"
 import { Field } from "../ui/field"
-import { NewCourse } from "@/types/course";
+import { ExistentCourse, BaseCourse } from "@/types/course";
 import FileUploadButton from "../file-upload-button/FileUploadButton";
 import React from "react";
 
 interface CourseFormProps {
-  formData: NewCourse;
-  setFormData: (data: any) => void;
+  courseData: BaseCourse | ExistentCourse;
+  setCourseData: (data: any) => void;
   handleSubmit: (e: React.FormEvent) => void;
+  variant: "create" | "edit";
 }
 
-const CourseForm = ({ formData, setFormData, handleSubmit }: CourseFormProps) => {
+const CourseForm = ({ courseData, setCourseData, handleSubmit, variant }: CourseFormProps) => {
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
-    setFormData((prev: any) => ({
+    setCourseData((prev: any) => ({
       ...prev,
       [name]: value,
     }));
@@ -24,7 +25,7 @@ const CourseForm = ({ formData, setFormData, handleSubmit }: CourseFormProps) =>
       files: FileList;
     }
     
-    setFormData((prevFormData: NewCourse) => ({
+    setCourseData((prevFormData: BaseCourse) => ({
       ...prevFormData,
       thumbnail: target.files[0]
     }));
@@ -34,7 +35,9 @@ const CourseForm = ({ formData, setFormData, handleSubmit }: CourseFormProps) =>
     <form onSubmit={handleSubmit}>
       <Fieldset.Root>
         <Stack>
-          <Fieldset.Legend>Criar novo curso</Fieldset.Legend>
+          <Fieldset.Legend>
+            {variant === "create" ? "Criar novo curso" : "Editar curso"}
+          </Fieldset.Legend>
           <Fieldset.HelperText>
             Insira abaixo os detalhes gerais
           </Fieldset.HelperText>
@@ -46,15 +49,15 @@ const CourseForm = ({ formData, setFormData, handleSubmit }: CourseFormProps) =>
         >
           <Fieldset.Content>
             <Field label="Nome do curso">
-              <Input variant={"subtle"} name="name" value={ formData.name } onChange={handleChange} />
+              <Input variant={"subtle"} name="name" value={ courseData.name } onChange={handleChange} />
             </Field>
 
             <Field label="Descrição">
-              <Input variant={"subtle"} name="description" type="textarea" value={ formData.description } onChange={handleChange} />
+              <Input variant={"subtle"} name="description" type="textarea" value={ courseData.description } onChange={handleChange} />
             </Field>
 
             <Field label="Data de vencimento">
-              <Input variant={"subtle"} name="end_date" type="date" value={ formData.end_date } onChange={handleChange} />
+              <Input variant={"subtle"} name="end_date" type="date" value={ courseData.end_date } onChange={handleChange} />
             </Field>
 
             <Field label="Thumbnail">
@@ -63,7 +66,7 @@ const CourseForm = ({ formData, setFormData, handleSubmit }: CourseFormProps) =>
           </Fieldset.Content>
 
           <Button type="submit" alignSelf="flex-start">
-            Criar
+            {variant === "create" ? "Criar curso" : "Salvar alterações"}
           </Button>
         </VStack>
       </Fieldset.Root>
