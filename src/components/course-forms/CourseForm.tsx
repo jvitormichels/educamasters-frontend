@@ -3,6 +3,10 @@ import { Field } from "../ui/field"
 import { ExistentCourse, BaseCourse } from "@/types/course";
 import FileUploadButton from "../file-upload-button/FileUploadButton";
 import React from "react";
+import { chakra, useRecipe } from "@chakra-ui/react"
+import AutoResize from "react-textarea-autosize"
+
+const StyledAutoResize = chakra(AutoResize)
 
 interface CourseFormProps {
   courseData: BaseCourse | ExistentCourse;
@@ -12,6 +16,9 @@ interface CourseFormProps {
 }
 
 const CourseForm = ({ courseData, setCourseData, handleSubmit, variant }: CourseFormProps) => {
+  const recipe = useRecipe({ key: "textarea" })
+  const styles = recipe({ size: "sm" })
+
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
     setCourseData((prev: any) => ({
@@ -53,7 +60,17 @@ const CourseForm = ({ courseData, setCourseData, handleSubmit, variant }: Course
             </Field>
 
             <Field label="Descrição">
-              <Input variant={"subtle"} name="description" type="textarea" value={ courseData.description } onChange={handleChange} />
+              <StyledAutoResize
+                name="description"
+                value={ courseData.description }
+                onChange={(e) => {handleChange(e as any)}}
+                minH="initial"
+                resize="none"
+                overflow="hidden"
+                lineHeight="inherit"
+                css={styles}
+                backgroundColor={"#18181a"}
+              />
             </Field>
 
             <Field label="Data de vencimento">
