@@ -1,8 +1,8 @@
 import apiClient from ".";
 import { ExistentCourse, BaseCourse, CourseList } from "@/types/course";
 
-export const fetchCourses = async (query = "", page = 1, per_page = 10): Promise<CourseList> => {
-  const params = { query, page, per_page };
+export const fetchCourses = async (query = "", page = 1, per_page = 10, include_expired: boolean): Promise<CourseList> => {
+  const params = { query, page, per_page, include_expired };
   const response = await apiClient.get<CourseList>("/courses", { params });
   return response.data;
 };
