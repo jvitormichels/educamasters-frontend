@@ -12,7 +12,8 @@ function EditCoursePage() {
     name: "",
     description: "",
     end_date: "",
-    thumbnail: ""
+    thumbnail: "",
+    pages: [],
   });
 
   useEffect(() => {

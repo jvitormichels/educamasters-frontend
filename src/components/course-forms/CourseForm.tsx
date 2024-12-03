@@ -13,7 +13,7 @@ interface CourseFormProps {
 }
 
 const CourseForm = ({ courseData, setCourseData, handleSubmit, variant }: CourseFormProps) => {
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleChange = <T extends React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>>(e: T) => {
     const { name, value } = e.target;
     setCourseData((prev: any) => ({
       ...prev,
@@ -60,18 +60,22 @@ const CourseForm = ({ courseData, setCourseData, handleSubmit, variant }: Course
                     <Input required variant={"subtle"} name="end_date" type="date" value={ courseData.end_date } onChange={handleChange} />
                   </Field>
 
-                  <Field label="Thumbnail">
-                    <FileUploadButton text="Imagem" handleThumbnailChange={handleThumbnailChange} />
-                  </Field>
+                  { variant === "create" && (
+                    <Field label="Thumbnail">
+                      <FileUploadButton text="Imagem" handleThumbnailChange={handleThumbnailChange} />
+                    </Field>
+                  )}
                 </Stack>
               </Box>
 
               <Box>
                 <Field label="Descrição">
                   <Textarea
+                    onChange={handleChange}
+                    value={ courseData.description }
+                    name="description"
                     variant={"subtle"}
                     minH={"13em"}
-                    placeholder="XSmall size"
                   />
                 </Field>
               </Box>

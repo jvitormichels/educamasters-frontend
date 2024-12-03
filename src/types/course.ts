@@ -15,6 +15,18 @@ export interface BaseCourse {
 
 export interface ExistentCourse extends BaseCourse {
   id: number;
+  pages: ExistentCoursePage[];
+}
+
+export interface BaseCoursePage {
+  course_id: number;
+  title: string;
+  video: File | string | null;
+}
+
+export interface ExistentCoursePage extends BaseCoursePage {
+  id: number;
+  position: number;
 }
 
 export interface CourseList {
