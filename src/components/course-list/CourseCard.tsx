@@ -1,4 +1,4 @@
-import { Card } from "@chakra-ui/react"
+import { Badge, Card } from "@chakra-ui/react"
 import { ExistentCourse } from "@/types/course"
 import { Button } from "../../components/ui/button"
 import { Image } from "@chakra-ui/react"
@@ -21,6 +21,11 @@ const CourseCard: React.FC<CourseCardProps> = ({ course, variant, getCourses }) 
     e.preventDefault();
   }
 
+  function formatDate() {
+    const date = new Date(course.end_date)
+    return new Intl.DateTimeFormat('pt-BR').format(date)
+  }
+
   return (
     <Card.Root maxW="sm" overflow="hidden">
       <Image
@@ -29,6 +34,7 @@ const CourseCard: React.FC<CourseCardProps> = ({ course, variant, getCourses }) 
       />
       <Card.Body gap="2">
         <Card.Title lineClamp={2}>{ course.name }</Card.Title>
+        <Badge width={"fit-content"}>{ formatDate() }</Badge>
       </Card.Body>
       <Card.Footer justifyContent="center">
         { variant === "admin" && (
