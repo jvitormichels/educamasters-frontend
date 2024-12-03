@@ -1,15 +1,17 @@
 import { deleteCoursePage } from "../../services/coursePagesService";
 import { ExistentCoursePage } from "@/types/course";
-import { Button, Stack, Text } from "@chakra-ui/react";
+import { Box, Button, Stack, Text } from "@chakra-ui/react";
 import { toaster } from "../ui/toaster";
 import { useState } from "react";
 
-interface EditPageProps {
+interface PageItemProps {
   page: ExistentCoursePage;
   index: number;
+  variant: "admin" | "default";
+  setCurrentPage?: (page: ExistentCoursePage) => void;
 }
 
-const EditPage: React.FC<EditPageProps> = ({ page, index }) => {
+const PageItem: React.FC<PageItemProps> = ({ page, index, variant, setCurrentPage }) => {
   const [shouldRender, setShouldRender] = useState(true);
   index = index + 1
 
@@ -22,6 +24,10 @@ const EditPage: React.FC<EditPageProps> = ({ page, index }) => {
       setShouldRender(false);
     })
   }
+
+  const handleClick = () => {
+    setCurrentPage && setCurrentPage(page);
+  }
   
   return shouldRender ? (
     <Stack
@@ -31,11 +37,17 @@ const EditPage: React.FC<EditPageProps> = ({ page, index }) => {
         direction="row"
       >
         <Text fontSize={"xl"}>{index}. {page.title}</Text>
-        <Button onClick={ handleDelete } variant="solid">
-          Excluir
-        </Button>
+        {variant === "admin" ?
+          <Button onClick={ handleDelete } variant="solid">
+            Excluir
+          </Button>
+        : 
+          <Button onClick={ handleClick } variant="solid">
+            Assistir
+          </Button>
+        }
     </Stack>
   ) : null;
 }
 
-export default EditPage;
+export default PageItem;

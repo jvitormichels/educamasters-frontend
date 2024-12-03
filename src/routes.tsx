@@ -9,12 +9,14 @@ import Administration from "./pages/administration";
 import CreateCoursePage from "./pages/course-create";
 import ListCourses from "./pages/administration/ListCourses";
 import EditCoursePage from "./pages/course-edit";
+import CourseWatchPage from "./pages/course-watch";
 
 function AppRoutes() {
   return (
     <Routes>
       <Route path="/" element={<Layout />}>
         <Route index element={<Home />} />
+        <Route path="courses/:id" element={<CourseWatchPage />} />
         <Route path="about" element={<About />} />
         <Route path="contact" element={<Contact />} />
         <Route path="administration/" element={<Administration />}>
