@@ -10,6 +10,7 @@ import CreateCoursePage from "./pages/course-create";
 import ListCourses from "./pages/administration/ListCourses";
 import EditCoursePage from "./pages/course-edit";
 import CourseWatchPage from "./pages/course-watch";
+import Dashboard from "./pages/dashboard";
 
 function AppRoutes() {
   return (
@@ -18,7 +19,7 @@ function AppRoutes() {
         <Route index element={<Home />} />
         <Route path="courses/:id" element={<CourseWatchPage />} />
         <Route path="about" element={<About />} />
-        <Route path="contact" element={<Contact />} />
+        <Route path="dashboard" element={<Dashboard />} />
         <Route path="administration/" element={<Administration />}>
           <Route index element={<ListCourses />} />
           <Route path="courses" element={<CreateCoursePage />} />  
