@@ -39,7 +39,7 @@ function ListCourses() {
           pt={[4, 4, 0, 0]}
         >
           <SearchBar searchQuery={searchQuery} setSearchQuery={setSearchQuery} />
-          <Link to="/administration/courses/create">
+          <Link to="/administration/courses">
             <Button>Novo Curso</Button>
           </Link>
         </Stack>
