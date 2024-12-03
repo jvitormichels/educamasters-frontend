@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { fetchCourses } from '../../services/courseService';
-import { Course, Meta } from '@/types/course';
+import { ExistentCourse, Meta } from '@/types/course';
 import CourseList from '../../components/course-list';
 import Pagination from '../../components/pagination/Pagination';
 import { Box, Button, Stack } from '@chakra-ui/react';
@@ -8,7 +8,7 @@ import SearchBar from '../../components/searchbar/SearchBar';
 import { Link } from 'react-router-dom';
 
 function ListCourses() {
-  const [courses, setCourses] = useState<Course[]>([]);
+  const [courses, setCourses] = useState<ExistentCourse[]>([]);
   const [metadata, setMetadata] = useState<Meta>({
     total_count: 0,
     total_pages: 1,
@@ -21,11 +21,15 @@ function ListCourses() {
   const [currentPage, setCurrentPage] = useState(1);
   const pageSize = 8;
 
-  useEffect(() => {
+  function getCourses(): void {
     fetchCourses(searchQuery, currentPage, pageSize).then((data) => {
       setCourses(data.courses);
       setMetadata(data.meta);
     });
+  }
+
+  useEffect(() => {
+    getCourses();
   }, [currentPage, searchQuery]);
 
   return (
@@ -44,7 +48,7 @@ function ListCourses() {
           </Link>
         </Stack>
       </Box>
-      <CourseList variant="admin" courses={courses} />
+      <CourseList variant="admin" courses={courses} getCourses={getCourses} />
       <Box mt={4} px={[2, 4, 6]}>
         <Pagination meta={metadata} pageSize={pageSize} setCurrentPage={setCurrentPage}/>
       </Box>

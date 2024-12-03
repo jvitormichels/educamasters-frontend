@@ -1,16 +1,25 @@
 import { Card } from "@chakra-ui/react"
-import { Course } from "@/types/course"
+import { ExistentCourse } from "@/types/course"
 import { Button } from "../../components/ui/button"
 import { Image } from "@chakra-ui/react"
 import { Link } from "react-router-dom"
+import { deleteCourse } from "../../services/courseService"
 
 interface CourseCardProps {
-  course: Course;
+  course: ExistentCourse;
   variant: "admin" | "default";
+  getCourses?: () => void;
 }
 
-const CourseCard: React.FC<CourseCardProps> = ({ course, variant }) => {
+const CourseCard: React.FC<CourseCardProps> = ({ course, variant, getCourses }) => {
   const placeholderImage = "https://via.placeholder.com/750x422?text=No+Image"
+
+  const handleDelete = async (e: React.FormEvent) => {
+    deleteCourse(course.id).then(() => {
+      getCourses && getCourses();
+    });
+    e.preventDefault();
+  }
 
   return (
     <Card.Root maxW="sm" overflow="hidden">
@@ -26,6 +35,9 @@ const CourseCard: React.FC<CourseCardProps> = ({ course, variant }) => {
           <Link to={`/administration/courses/${ course.id }`}>
             <Button variant="outline">Editar</Button>
           </Link>
+          <form onSubmit={handleDelete}>
+            <Button type="submit" variant="solid" colorPalette={"red"}>Deletar</Button>
+          </form>
         </Card.Footer>
       )}
     </Card.Root>
