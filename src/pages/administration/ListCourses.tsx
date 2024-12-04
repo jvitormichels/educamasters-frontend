@@ -42,7 +42,7 @@ function ListCourses() {
           direction={["column", "row", "row", "row"]}
           pt={[4, 4, 0, 0]}
         >
-          <SearchBar searchQuery={searchQuery} setSearchQuery={setSearchQuery} />
+          <SearchBar setCurrentPage={setCurrentPage} setSearchQuery={setSearchQuery} />
           <Link to="/administration/courses">
             <Button>Novo Curso</Button>
           </Link>

@@ -1,14 +1,14 @@
 import { useEffect, useState } from 'react';
 import './styles.css';
 import { fetchCourses } from '../../services/courseService';
-import { Course, Meta } from '@/types/course';
+import { ExistentCourse, Meta } from '@/types/course';
 import CourseList from '../../components/course-list';
 import Pagination from '../../components/pagination/Pagination';
 import { Box } from '@chakra-ui/react';
 import SearchBar from '../../components/searchbar/SearchBar';
 
 function Home() {
-  const [courses, setCourses] = useState<Course[]>([]);
+  const [courses, setCourses] = useState<ExistentCourse[]>([]);
   const [metadata, setMetadata] = useState<Meta>({
     total_count: 0,
     total_pages: 1,
@@ -22,7 +22,7 @@ function Home() {
   const pageSize = 8;
 
   useEffect(() => {
-    fetchCourses(searchQuery, currentPage, pageSize).then((data) => {
+    fetchCourses(searchQuery, currentPage, pageSize, false).then((data) => {
       setCourses(data.courses);
       setMetadata(data.meta);
     });
@@ -31,7 +31,7 @@ function Home() {
   return (
     <>
       <header className="App-header">
-        <SearchBar searchQuery={searchQuery} setSearchQuery={setSearchQuery} />
+        <SearchBar setCurrentPage={setCurrentPage} setSearchQuery={setSearchQuery} />
         <CourseList courses={courses} />
         <Box mt={4} px={[2, 4, 6]}>
           <Pagination meta={metadata} pageSize={pageSize} setCurrentPage={setCurrentPage}/>
