@@ -1,46 +1,41 @@
-# Getting Started with Create React App
+# Educamasters
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+A empresa Threewygo é uma empresa inovadora no mundo da educação online e estava determinada a criar a melhor plataforma de cursos de treinamento do mercado. Você, enquanto pessoa desenvolvedora, possui a missão de auxiliar essa empresa a realizar este desafio. 
 
-## Available Scripts
+O Gerente de Produto(GP) apresentou à equipe (Dev) a demanda que foi aprovada pelo Comitê de Produto, seguindo a seguinte solicitação:
 
-In the project directory, you can run:
+>(GP): Olá, desenvolvedores. Tenho uma nova demanda para vocês. Precisamos criar uma tela inicial que seja responsiva em dispositivos móveis e que exiba todos os cursos que ainda estão ativos, ou seja, aqueles cuja data de término não foi ultrapassada, com os títulos e descrições dos cursos. O que você acha disso? 
 
-### `npm start`
+> (Dev): Olá, GP. Entendi o requisito. Parece uma adição importante para melhorar a experiência do usuário. 
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+> (GP): Ótimo, a responsividade é fundamental. Além disso, é importante lembrar que em todos os cursos é possível visualizar um ou vários vídeos. Certifique-se de que a experiência de visualização de vídeos também seja otimizada para atender às necessidades dos nossos usuários. Certo?
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+> (Dev): Entendido, GP. A responsividade da visualização de vídeos também será prioridade no desenvolvimento. Vou garantir que os vídeos sejam reproduzidos de forma fluida e que a interface seja adaptada para proporcionar uma experiência de usuário agradável em todos os dispositivos.
 
-### `npm test`
+Os requisitos para esse projeto são:
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+| Requisitos | Descrições
+| -----------| -----------
+| R.1 | A tela inicial deve exibir uma lista de cursos atuais.
+| R.2 | Os cursos devem ser exibidos em um layout responsivo que funcione bem em dispositivos móveis.
+| R.3 | Cada curso na lista deve incluir o título e a descrição do curso.
+| R.4 | Os cursos devem ser filtrados com base na data de término, mostrando apenas cursos cuja data de término ainda não passou em relação à data atual.
+| R.5 | Crie um formulário de cadastro de curso que inclua os campos da tabela.
+| R.6 | Forneça uma maneira de editar e excluir cursos existentes.
+| R.7 | Apresentação tamanho total ocupado pelos vídeos nos cursos.
 
-### `npm run build`
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+> (GP): Olá Dev, como está indo o progresso do projeto? A gerência acabou de solicitar que implementemos uma nova funcionalidade que exigirá a extração de alguns relatórios dos cursos. Eles estão interessados em ver o tamanho total ocupado pelos vídeos nos cursos. Você acha que isso é possível? Não temos muitas restrições quanto à forma de apresentação, pode ser uma tela, uma query, um relatório ou qualquer outra forma que demonstre claramente o tamanho total ocupado pelos vídeos nos cursos. Tenho interesse em ver como você abordará essa tarefa.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+ <hr/>
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+ # Instruções
+ O sistema da Educamasters foi desenvolvido em dois repositórios, sendo que seu backend em rails está disponível neste [link](https://github.com/jvitormichels/educamasters-backend).
+  É necessário ter o Node instalado em sua máquina, na versão 22.11.0, que é a mais recente em LTS. Não foram realizados testes com outras versões.
+  Para rodar este projeto, siga a sequência de comandos:
+  * git clone https://github.com/jvitormichels/educamasters-frontend.git
+  * cd educamasters/front-end
+  * npm install
+  * npm start
 
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+  Este projeto de front ficará exposto, por padrão, na pota 4000, enquanto seu backend foi configurado para abrir na porta 3000.
