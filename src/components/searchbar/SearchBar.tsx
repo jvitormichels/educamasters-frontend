@@ -5,11 +5,11 @@ import { useDebounce } from 'use-debounce';
 import { useEffect, useState } from "react";
 
 interface SearchBarProps {
-  searchQuery: string;
+  setCurrentPage: (query: string) => void;
   setSearchQuery: (query: string) => void;
 }
 
-const SearchBar: React.FC<SearchBarProps> = ({ searchQuery, setSearchQuery }) => {
+const SearchBar: React.FC<SearchBarProps> = ({ setCurrentPage, setSearchQuery }) => {
   const [auxSearchQuery, setAuxSearchQuery] = useState("");
   const [debouncedQuery] = useDebounce(auxSearchQuery, 400);
 
@@ -19,6 +19,7 @@ const SearchBar: React.FC<SearchBarProps> = ({ searchQuery, setSearchQuery }) =>
 
   useEffect(() => {
     setSearchQuery(debouncedQuery);
+    setCurrentPage("1");
   }, [debouncedQuery]);
   
   return (

@@ -23,8 +23,6 @@ function Dashboard() {
       console.log(data.courses)
       setTopCourses(data.courses);
     });
-
-    console.log(expiredStorage)
   }, []);
 
   const formatNumber = (num: number) => {
