@@ -38,4 +38,5 @@ Os requisitos para esse projeto são:
   * npm install
   * npm start
 
-  Este projeto de front ficará exposto, por padrão, na pota 4000, enquanto seu backend foi configurado para abrir na porta 3000.
+  Este projeto de front ficará exposto, por padrão, na porta 4000, enquanto seu backend foi configurado para abrir na porta 3000.
+  Devido às configurações atuais de ambos os projetos, os dois devem rodar nas portas especificadas (3000 e 4000), pois o front procura pelo back na 3000, enquanto o URL permitido pelo backend é localhost:4000. Caso exista necessidade de alterar essas portas, o projeto deve ser configurado de acordo.
